@@ -15,9 +15,9 @@ class User extends Authenticatable
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
+    use HasRoles;
     use Notifiable;
     use TwoFactorAuthenticatable;
-    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -86,7 +86,6 @@ class User extends Authenticatable
         return $ids;
     }
 
-
     public function scopeActive($query)
     {
         return $query->where('status', 'active');
@@ -96,5 +95,4 @@ class User extends Authenticatable
     {
         return date('d M, Y', strtotime($this->attributes['created_at']));
     }
-
 }

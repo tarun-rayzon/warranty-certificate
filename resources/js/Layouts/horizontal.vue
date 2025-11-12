@@ -105,6 +105,15 @@ export default {
                                 <span>Dashboard</span>
                                 </Link>
                             </li>
+
+                            <li></li>
+
+                             <li class="nav-item">
+                                <Link :href="route('ftr-files.index')" class="nav-link menu-link">
+                                <i class='bx bx-file'></i>
+                                <span>FTR Files</span>
+                                </Link>
+                            </li>
                         </ul>
                     </BContainer>
                     <!-- Sidebar -->

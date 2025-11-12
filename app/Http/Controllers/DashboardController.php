@@ -6,15 +6,9 @@ use Inertia\Inertia;
 
 class DashboardController extends Controller
 {
-
     public function index()
     {
         return Inertia::render('Dashboard/Admin', []);
-    }
-
-    public function feedback()
-    {
-        return Inertia::render('Feedback/Index', []);
     }
 
     public function warranty()

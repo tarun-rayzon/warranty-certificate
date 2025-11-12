@@ -1,8 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\OrderDetailController;
+use App\Http\Controllers\FtrFileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,12 +15,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', [DashboardController::class, 'warranty'])->name('warranty');
+
 Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(function () {
 
     // dashboard controller
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/feedback', [DashboardController::class, 'feedback'])->name('feedback');
-    Route::get('/warranty', [DashboardController::class, 'warranty'])->name('warranty');
-    Route::get('/warranty-dashboard', [DashboardController::class, 'warranty_dashboard'])->name('warranty-dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+    Route::resource('ftr-files', FtrFileController::class);
 });
+
+// Route::get('/warranty-dashboard', [DashboardController::class, 'warranty_dashboard'])->name('warranty-dashboard');
