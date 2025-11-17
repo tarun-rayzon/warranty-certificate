@@ -1,3 +1,13 @@
+<script setup>
+import { Link, usePage } from '@inertiajs/vue3';
+
+const page = usePage()
+
+// This is the session your backend shared
+const customerLoggedIn = page.props.customer?.loggedIn
+
+</script>
+
 <template>
   <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3 position-sticky top-0 z-2">
     <div class="container">
@@ -11,14 +21,11 @@
 
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav align-items-lg-center gap-lg-3 pt-3 pt-lg-0">
-          <li class="nav-item">
+          <li class="nav-item" v-if="!customerLoggedIn">
             <button class="btn btn-link text-muted visit-link px-2 fw-semibold">Login</button>
           </li>
-          <li class="nav-item">
-            <button class="btn btn-link text-muted visit-link px-2 fw-semibold">Dashboard</button>
-          </li>
-          <li class="nav-item">
-            <a href="#warranty-form" class="btn btn-link text-muted visit-link px-2 fw-semibold">Register</a>
+          <li class="nav-item" v-if="customerLoggedIn">
+            <Link :href="route('customer.dashboard')" class="btn btn-link text-muted visit-link px-2 fw-semibold">Dashboard</Link>
           </li>
           <li class="nav-item">
             <a href="https://rayzonsolar.com/" target="_blank" class="btn btn-link visit-link px-2 fw-semibold">

@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('warranty_requests', function (Blueprint $table) {
             $table->id();
+            $table->string('request_id', 120)->unique();
             $table->foreignId('customer_id')->constrained('customers');
             $table->string('invoice_no', 50)->nullable();
             $table->string('invoice_file_path', 255)->nullable();

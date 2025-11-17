@@ -10,14 +10,4 @@ class DashboardController extends Controller
     {
         return Inertia::render('Dashboard/Admin', []);
     }
-
-    public function warranty()
-    {
-        return Inertia::render('Warranty/Index', []);
-    }
-
-    public function warranty_dashboard()
-    {
-        return Inertia::render('WarrantyDashboard/Index', []);
-    }
 }
