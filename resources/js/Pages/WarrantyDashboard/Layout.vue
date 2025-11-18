@@ -6,9 +6,9 @@ import { Link, router } from '@inertiajs/vue3'
   <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3 position-sticky top-0 z-1">
     <div class="container">
       <!-- Company Logo -->
-      <a class="navbar-brand d-flex align-items-center" href="/">
+      <Link :href="route('customer.dashboard')" class="navbar-brand d-flex align-items-center">
         <img src="@assets/images/logo-dark.png" alt="Company Logo" height="35" class="me-2" />
-      </a>
+      </Link>
 
       <!-- Mobile Menu Button -->
       <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

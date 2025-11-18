@@ -20,6 +20,11 @@ class WarrantyPublicController extends Controller
         return Inertia::render('Warranty/Index', []);
     }
 
+    public function customerLogin()
+    {
+        return Inertia::render('Customer/Login', []);
+    }
+
     public function submit(WarrantyRequestStore $request)
     {
         // normalize serials array
@@ -46,7 +51,7 @@ class WarrantyPublicController extends Controller
 
                 $path = null;
                 if ($request->hasFile('invoice')) {
-                    $path = $request->file('invoice')->store('invoices');
+                    $path = optimize_and_upload_image($request->file('invoice'), 'documents/invoices/');
                 }
 
                 $wr = WarrantyRequest::create([

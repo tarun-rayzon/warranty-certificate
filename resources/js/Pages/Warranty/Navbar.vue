@@ -22,7 +22,7 @@ const customerLoggedIn = page.props.customer?.loggedIn
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav align-items-lg-center gap-lg-3 pt-3 pt-lg-0">
           <li class="nav-item" v-if="!customerLoggedIn">
-            <button class="btn btn-link text-muted visit-link px-2 fw-semibold">Login</button>
+            <Link :href="route('customer.login')" class="btn btn-link text-muted visit-link px-2 fw-semibold">Login</Link>
           </li>
           <li class="nav-item" v-if="customerLoggedIn">
             <Link :href="route('customer.dashboard')" class="btn btn-link text-muted visit-link px-2 fw-semibold">Dashboard</Link>

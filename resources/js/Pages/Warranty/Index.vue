@@ -43,7 +43,7 @@ const formatCommaSeparated = () => {
 function handleFileChange(e) {
   const target = e.target
   if (target.files?.[0]) {
-    formData.value.invoice = target.files[0]
+    formData.invoice = target.files[0]
   }
 }
 
@@ -158,7 +158,6 @@ const verifyOtp = () => {
 */
 const resendOtp = () => {
   if (resendCooldown.value > 0) return // prevent double-clicks
-  
 
   otpForm.post(route('otp.send'), {
     preserveScroll: true,
@@ -226,6 +225,7 @@ watch(
   <Hero />
 
   <div class="container mb-4">
+
     <About />
 
     <section class="warranty-form pt-5" id="warranty-form">
@@ -243,15 +243,15 @@ watch(
           </div>
         </div>
         <div class="col-lg-8" data-aos="fade-up" data-aos-duration="3000">
-          <!-- Success Message -->
-          <div v-if="submitted" class="alert alert-success d-flex align-items-center gap-2" role="alert">
-            <i class="bi bi-check-circle-fill me-2"></i>
-            <span>Form submitted successfully! Your warranty certificate is being processed.</span>
-          </div>
-
           <!-- Form Card -->
           <div class="card shadow border-0">
             <div class="card-body p-4 p-md-5">
+              <p class="alert alert-warning mb-3">
+                <i class="bi bi-exclamation-triangle-fill"></i>
+                <strong>Important:</strong>
+                Please ensure all information is accurate before submitting. Incomplete or incorrect details may rejected your warranty registration.
+              </p>
+
               <form @submit.prevent="handleSubmit">
                 <!-- Personal Information -->
                 <FormSection title="Personal Information" description="Enter your basic details">
@@ -337,9 +337,9 @@ watch(
                       <button type="button" class="btn btn-outline-primary btn-sm mt-2" @click="checkSerialNumbers" :disabled="checkingSerial">
                         <span v-if="checkingSerial">
                           <span class="spinner-border spinner-border-sm me-2"></span>
-                          Checking...
+                          Validating...
                         </span>
-                        <span v-else>Check Serial Numbers</span>
+                        <span v-else>Validate Serial Numbers</span>
                       </button>
                     </div>
                   </div>
@@ -369,6 +369,12 @@ watch(
                   </div>
                 </FormSection>
 
+                <span v-if="!serialValid">
+                    <p class="text-danger fw-semibold mt-2">
+                        Please ensure serial numbers are validated before submitting the form.
+                    </p>
+                </span>
+
                 <!-- Submit -->
                 <div class="pt-2">
                   <button type="submit" class="btn btn-primary w-100 py-3 fw-semibold" :disabled="formData.processing || !serialValid" :class="{ 'opacity-25': formData.processing || !serialValid }">
@@ -390,17 +396,24 @@ watch(
 
     <BModal centered v-model="otpModal" hide-footer title="Email Verification" header-class="bg-white p-3" title-class="fs-14" no-body @hide.prevent hide-header-close>
       <div class="modal-body text-center">
-        <p class="text-muted mb-4">
+        <p class="text-muted mb-2">
           We’ve sent a 6-digit code to
           <strong>{{ formData.email ?? 'your-email@example.com' }}</strong>
         </p>
+        <p class="text-muted mb-4 small">Want to change your email? <a href="#" @click="otpModal = false" class="fw-semibold">Click here</a></p>
 
         <form @submit.prevent="verifyOtp()">
           <div class="d-flex justify-content-center gap-2 mb-3">
             <input v-for="(digit, index) in otpForm.code" :key="index" type="text" maxlength="1" class="otp-input" v-model="otpForm.code[index]" @input="handleInput($event, index)" @keydown.backspace="handleBackspace($event, index)" @paste="handlePaste($event)" style="width: 45px; text-align: center; font-size: 1.5rem" required />
           </div>
 
-          <button type="submit" class="btn btn-primary w-100 mb-3">Verify OTP</button>
+          <button type="submit" class="btn btn-primary w-100 mb-3" :disabled="otpForm.processing">
+            <span v-if="otpLoading">
+              <span class="spinner-border spinner-border-sm me-2"></span>
+              Verifying...
+            </span>
+            <span v-else>Verify OTP</span>
+          </button>
           <button type="button" class="btn btn-link text-decoration-underline fw-semibold" @click="resendOtp" :disabled="resendCooldown > 0">
             <span v-if="resendCooldown === 0">Resend OTP</span>
             <span v-else>Resend in {{ resendCooldown }}s</span>

@@ -32,7 +32,7 @@ class WarrantyRequestStore extends FormRequest
             'pincode' => 'required|string|max:12',
             'invoice_no' => 'required|string|max:100',
             'serial_no' => 'required|string|max:5000', // comma separated
-            'invoice' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:5120'
+            'invoice' => 'required|file|mimes:pdf,jpg,jpeg,png|max:5120'
         ];
     }
 }

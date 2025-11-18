@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Traits\HasS3FileUrls;
 use Illuminate\Database\Eloquent\Model;
 
 class WarrantyRequest extends Model
 {
+    use HasS3FileUrls;
+
     protected $table = 'warranty_requests';
 
     protected $fillable = [
@@ -20,7 +23,7 @@ class WarrantyRequest extends Model
         'qc_reject_reason',
     ];
 
-    protected $appends = ['status_label', 'status_badge'];
+    protected $appends = ['status_label', 'status_badge', 'invoice_file_url'];
 
     // Relationship
     public function customer()
@@ -43,7 +46,7 @@ class WarrantyRequest extends Model
         return $this->belongsTo(User::class, 'uploaded_by');
     }
 
-    //
+    // Accessors
     public function getCreatedAtAttribute($value)
     {
         return date('d-m-Y', strtotime($value));
@@ -71,5 +74,10 @@ class WarrantyRequest extends Model
         ];
 
         return $labels[$this->status] ?? 'warning';
+    }
+
+    public function getInvoiceFileUrlAttribute()
+    {
+        return $this->invoice_file_path ? $this->getS3UrlFor($this->invoice_file_path) : null;
     }
 }

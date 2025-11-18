@@ -29,6 +29,7 @@ const columns = [
   { key: 'phone', label: 'Mobile', sortable: false },
   { key: 'invoice', label: 'Invoice No', sortable: false },
   { key: 'invoice_file', label: 'Invoice', sortable: false },
+  { key: 'no_of_items', label: 'No of Items', sortable: false },
   { key: 'status', label: 'Status', sortable: false },
   { key: 'created_at', label: 'Created At', sortable: false },
   { key: 'action', label: 'Action', sortable: false },
@@ -162,23 +163,24 @@ export default {
               </BRow>
             </template>
             <template #default="{ isColumnVisible }">
-              <tr v-for="(ftr, index) in warranty_requests.data" :key="index">
+              <tr v-for="(request, index) in warranty_requests.data" :key="index">
                 <td v-if="isColumnVisible('id')">{{ (warranty_requests.current_page - 1) * warranty_requests.per_page + index + 1 }}</td>
-                <td v-if="isColumnVisible('request_id')">{{ ftr.request_id }}</td>
+                <td v-if="isColumnVisible('request_id')">{{ request.request_id }}</td>
                 <td v-if="isColumnVisible('customer_name')">
-                  <div>{{ ftr.customer?.name ?? '-' }}</div>
-                  <span class="small text-muted">{{ ftr.customer?.email ?? '-' }}</span>
+                  <div>{{ request.customer?.name ?? '-' }}</div>
+                  <span class="small text-muted">{{ request.customer?.email ?? '-' }}</span>
                 </td>
-                <td v-if="isColumnVisible('phone')">{{ ftr.customer?.phone ?? '-' }}</td>
-                <td v-if="isColumnVisible('invoice_no')">{{ ftr.invoice_no ?? '-' }}</td>
-                <td v-if="isColumnVisible('invoice_file')">{{ ftr.invoice ?? '-' }}</td>
+                <td v-if="isColumnVisible('phone')">{{ request.customer?.phone ?? '-' }}</td>
+                <td v-if="isColumnVisible('invoice_no')">{{ request.invoice_no ?? '-' }}</td>
+                <td v-if="isColumnVisible('invoice_file')">{{ request.invoice ?? '-' }}</td>
+                <td v-if="isColumnVisible('no_of_items')">{{ request.items_count ?? '0' }}</td>
                 <td v-if="isColumnVisible('status')">
-                    <span :class="`badge bg-${ftr.status_badge}`">{{ ftr.status_label ?? '-' }}</span>
+                  <span :class="`badge bg-${request.status_badge}`">{{ request.status_label ?? '-' }}</span>
                 </td>
-                <td v-if="isColumnVisible('created_at')">{{ ftr.created_at ?? '-' }}</td>
+                <td v-if="isColumnVisible('created_at')">{{ request.created_at ?? '-' }}</td>
                 <td v-if="isColumnVisible('action')">
-                  <Link :href="route('ftr-files.show', ftr.id)" class="me-2 btn btn-outline-primary btn-sm"><i class="bx bx-show align-middle"></i></Link>
-                  <button class="me-2 btn btn-outline-danger btn-sm" @click="openDeleteModal(ftr.id)"><i class="bx bx-trash align-middle"></i></button>
+                  <Link :href="route('warranty-requests.show', request.id)" class="me-1 btn btn-outline-primary btn-sm"><i class="bx bx-show align-middle"></i></Link>
+                  <button class="btn btn-outline-danger btn-sm" @click="openDeleteModal(request.id)"><i class="bx bx-trash align-middle"></i></button>
                 </td>
               </tr>
             </template>

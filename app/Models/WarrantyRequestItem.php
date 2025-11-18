@@ -15,6 +15,11 @@ class WarrantyRequestItem extends Model
         'serial_number_id',
     ];
 
+    protected $appends = [
+        'status_label',
+        'status_badge',
+    ];
+
     // Relationships
     public function serialNumber()
     {
@@ -24,5 +29,32 @@ class WarrantyRequestItem extends Model
     public function warrantyRequest()
     {
         return $this->belongsTo(WarrantyRequest::class);
+    }
+
+    // Accessors
+    public function getStatusLabelAttribute()
+    {
+        $labels = [
+            'pending'            => 'Pending',
+            'verified'           => 'Verified',
+            'not_found'          => 'Not Found',
+            'already_consumed'   => 'Already Consumed',
+            'invalid'            => 'Invalid',
+        ];
+
+        return $labels[$this->verification_state] ?? 'Unknown';
+    }
+
+    public function getStatusBadgeAttribute()
+    {
+        $labels = [
+            'pending'            => 'warning',
+            'verified'           => 'success',
+            'not_found'          => 'dark',
+            'already_consumed'   => 'danger',
+            'invalid'            => 'danger',
+        ];
+
+        return $labels[$this->verification_state] ?? 'warning';
     }
 }

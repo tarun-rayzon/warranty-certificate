@@ -8,9 +8,16 @@ use Inertia\Inertia;
 
 class QcApprovalController extends Controller
 {
+    private $user;
+
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware(function ($request, $next) {
+            $this->user = $request->user(); // This will be executed after the 'auth' middleware
+
+            return $next($request);
+        });
     }
 
     /**
@@ -18,6 +25,10 @@ class QcApprovalController extends Controller
      */
     public function index(Request $request)
     {
+        if (!$this->user->hasPermissionTo('warranty.view')) {
+            abort(403, 'Unauthorized action.');
+        }
+
         $filters = [
             'search' => $request->get('search', ''),
             'status' => $request->get('status', ''),
@@ -45,12 +56,30 @@ class QcApprovalController extends Controller
             SUM(CASE WHEN status = "rejected" THEN 1 ELSE 0 END) as rejected
         ')->first()->toArray();
 
-        $warranty_requests = $warranty_requests->paginate(10);
+        $warranty_requests = $warranty_requests
+            ->withCount('items')
+            ->paginate(10);
 
         return Inertia::render('Request/Index', [
             'warranty_requests' => $warranty_requests,
             'count' => $count,
             'filters' => $filters
+        ]);
+    }
+
+    /**
+     * Show the specified resource.
+     */
+    public function show($id)
+    {
+        if (!$this->user->hasPermissionTo('warranty.view')) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        $warranty_request = WarrantyRequest::with(['customer', 'items', 'certificate'])->findOrFail($id);
+
+        return Inertia::render('Request/Show', [
+            'request' => $warranty_request,
         ]);
     }
 }

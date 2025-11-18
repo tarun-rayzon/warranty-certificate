@@ -120,7 +120,6 @@ class FtrFileController extends Controller
 
             return back()->with('success', 'File uploaded successfully.');
         } catch (\Throwable $th) {
-            dd($th->getMessage());
             //throw $th;
             DB::rollBack();
             return back()->with('error', 'Something went wrong while uploading the file.');

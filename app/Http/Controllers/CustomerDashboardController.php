@@ -24,21 +24,45 @@ class CustomerDashboardController extends Controller
 
         $customer = Customer::where('email', $email)->firstOrFail();
 
-        $requests = WarrantyRequest::with(['certificate', 'items'])
-            ->where('customer_id', $customer->id);
+        // Base query (no withCount, no eager loads)
+        $baseQuery = WarrantyRequest::where('customer_id', $customer->id);
 
-        $count = (clone $requests)->selectRaw('
-            count(id) as count,
+        // Get aggregated counts from the base query
+        $count = (clone $baseQuery)->selectRaw('
+            COUNT(*) as count,
             SUM(CASE WHEN status = "pending_qc" THEN 1 ELSE 0 END) as pending,
             SUM(CASE WHEN status = "approved" THEN 1 ELSE 0 END) as approved,
             SUM(CASE WHEN status = "rejected" THEN 1 ELSE 0 END) as rejected
         ')->first()->toArray();
 
-        $requests = $requests->paginate(10);
+        // Now build the paginated requests with withCount and eager loads
+        $requests = $baseQuery
+            ->with(['certificate'])
+            ->withCount('items')
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
 
+        // return view / inertia
         return Inertia::render('WarrantyDashboard/Index', [
             'requests' => $requests,
-            'count' => $count
+            'count' => $count,
+        ]);
+    }
+
+    /**
+     * View Warranty Request
+     */
+    public function show($id)
+    {
+        $email = session('temp_auth_email');
+        abort_unless($email, 401);
+
+        $customer = Customer::where('email', $email)->firstOrFail();
+
+        $request = WarrantyRequest::with(['items', 'certificate'])->where('customer_id', $customer->id)->findOrFail($id);
+
+        return Inertia::render('WarrantyDashboard/Show', [
+            'request' => $request,
         ]);
     }
 

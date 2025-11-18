@@ -600,10 +600,7 @@ File: Custom Css File
 
 .multiselect {
   padding: 0;
-}
-
-.multiselect-wrapper {
-  min-height: 37.5px !important;
+  border: var(--vz-border-width) solid var(--vz-input-border-custom) !important;
 }
 
 // credit-card wizard

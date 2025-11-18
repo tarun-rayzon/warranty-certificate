@@ -165,11 +165,43 @@ export default {
 
         <li></li>
 
-        <li class="nav-item">
+        <li class="nav-item" v-if="$page.props.user.permissions.includes('warranty.view')">
+          <Link :href="route('warranty-requests.index')" class="nav-link menu-link">
+            <i class="bx bx-package"></i>
+            <span>Warranty Requests</span>
+          </Link>
+        </li>
+
+        <li class="nav-item" v-if="$page.props.user.permissions.includes('ftr-file.view')">
           <Link :href="route('ftr-files.index')" class="nav-link menu-link">
             <i class="bx bx-file"></i>
             <span>FTR Files</span>
           </Link>
+        </li>
+
+        <li class="nav-item" v-if="hasAnyPermission(['role.view', 'permission.view'])">
+          <a class="nav-link menu-link" href="#sidebarMasterCRM" data-bs-toggle="collapse" role="button" aria-expanded="false" aria-controls="sidebarMasterCRM">
+            <i class="bx bx-sidebar"></i>
+            <span>Master</span>
+          </a>
+          <div class="collapse menu-dropdown" id="sidebarMasterCRM">
+            <ul class="nav nav-sm flex-column">
+                 <li v-if="$page.props.user.permissions.includes('user.view')" class="nav-item">
+                <!-- users -->
+                <Link :href="route('user.index')" class="nav-link menu-link">Users</Link>
+              </li>
+
+              <li v-if="$page.props.user.permissions.includes('role.view')" class="nav-item">
+                <!-- roles -->
+                <Link :href="route('role.index')" class="nav-link menu-link">Roles</Link>
+              </li>
+
+              <li v-if="$page.props.user.permissions.includes('permission.view')" class="nav-item">
+                <!-- roles -->
+                <Link :href="route('permission.index')" class="nav-link menu-link">Permissions</Link>
+              </li>
+            </ul>
+          </div>
         </li>
       </ul>
     </template>

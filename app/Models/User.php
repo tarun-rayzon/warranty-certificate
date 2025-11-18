@@ -61,36 +61,6 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    // Relationship with Reporting Manager (self-referencing relationship)
-    public function reportingManager()
-    {
-        return $this->belongsTo(User::class, 'reporting_manager_id');
-    }
-
-    // Relationship with Subordinates
-    public function subordinates()
-    {
-        return $this->hasMany(User::class, 'reporting_manager_id');
-    }
-
-    public function getSubordinateIds()
-    {
-        $subordinates = $this->subordinates()->with('subordinates')->get();
-
-        $ids = $subordinates->pluck('id')->toArray();
-
-        foreach ($subordinates as $subordinate) {
-            $ids = array_merge($ids, $subordinate->getSubordinateIds());
-        }
-
-        return $ids;
-    }
-
-    public function scopeActive($query)
-    {
-        return $query->where('status', 'active');
-    }
-
     public function getCreatedAtAttribute()
     {
         return date('d M, Y', strtotime($this->attributes['created_at']));

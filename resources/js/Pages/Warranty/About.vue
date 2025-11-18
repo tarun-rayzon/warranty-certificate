@@ -109,6 +109,26 @@
               <p class="text-muted mb-0">After successful OTP validation, you will be redirected to your warranty dashboard where you can view and manage your warranty details.</p>
             </div>
           </div>
+
+          <!-- Milestone 4 -->
+          <div class="timeline-item position-relative pb-5">
+            <div class="timeline-dot bg-primary"></div>
+            <div class="ps-4">
+              <p class="text-uppercase fw-semibold text-primary">Verification</p>
+              <h5 class="fw-bold mt-2">QC Team Verification</h5>
+              <p class="text-muted mb-0">Your warranty will be sent to the Quality Control (QC) team for verification and approval.</p>
+            </div>
+          </div>
+
+          <!-- Milestone 5 -->
+          <div class="timeline-item position-relative pb-5">
+            <div class="timeline-dot bg-primary"></div>
+            <div class="ps-4">
+              <p class="text-uppercase fw-semibold text-primary">Download</p>
+              <h5 class="fw-bold mt-2">Download Warranty</h5>
+              <p class="text-muted mb-0">Once verified, you can download your warranty certificate for your records and future reference. It will be available in your dashboard.</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>

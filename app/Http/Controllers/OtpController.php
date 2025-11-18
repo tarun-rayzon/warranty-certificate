@@ -11,6 +11,10 @@ class OtpController extends Controller
 {
     public function send(Request $r)
     {
+        $r->validate([
+            'email' => 'required|email|exists:customers,email',
+        ]);
+
         $email = strtolower(trim($r->input('email')));
 
         try {
