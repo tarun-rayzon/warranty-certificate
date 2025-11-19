@@ -5,280 +5,162 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Warranty Certificate OTP - Rayzon Solar</title>
-    <style>
-        :root {
-            --primary-color: #095763;
-            --secondary-color: #0a7c8c;
-            --accent-color: #f8b500;
-            --light-bg: #f5f9fa;
-            --text-color: #333333;
-            --light-text: #6c757d;
-        }
 
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-        }
-
-        .email-container {
-            max-width: 600px;
-            margin: 0 auto;
-            background-color: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        .header {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            padding: 30px 20px;
-            text-align: center;
-            color: white;
-        }
-
-        .logo {
-            font-size: 28px;
-            font-weight: bold;
-            margin-bottom: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff
-        }
-
-        .logo-icon {
-            margin-right: 10px;
-            font-size: 32px;
-        }
-
-        .tagline {
-            font-size: 16px;
-            opacity: 0.9;
-            margin-top: 5px;
-        }
-
-        .content {
-            padding: 30px;
-        }
-
-        .greeting {
-            font-size: 18px;
-            margin-bottom: 20px;
-            color: var(--primary-color);
-        }
-
-        .otp-container {
-            background-color: var(--light-bg);
-            border-left: 4px solid var(--primary-color);
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 0 8px 8px 0;
-        }
-
-        .otp-code {
-            font-size: 32px;
-            font-weight: bold;
-            letter-spacing: 8px;
-            text-align: center;
-            color: var(--primary-color);
-            padding: 10px;
-            background: white;
-            border-radius: 6px;
-            margin: 15px 0;
-            font-family: 'Courier New', monospace;
-        }
-
-        .expiry-notice {
-            color: #d9534f;
-            font-weight: 500;
-            text-align: center;
-            margin: 15px 0;
-        }
-
-        .security-notice {
-            background-color: #fff9e6;
-            border: 1px solid #ffeaa7;
-            border-radius: 6px;
-            padding: 15px;
-            margin: 20px 0;
-            font-size: 14px;
-        }
-
-        .features {
-            display: flex;
-            flex-wrap: wrap;
-            margin: 30px 0;
-            gap: 15px;
-        }
-
-        .feature {
-            flex: 1;
-            min-width: 150px;
-            text-align: center;
-            padding: 15px;
-            background-color: var(--light-bg);
-            border-radius: 8px;
-        }
-
-        .feature-icon {
-            font-size: 24px;
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-
-        .cta-section {
-            text-align: center;
-            margin: 30px 0;
-            padding: 20px;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-radius: 8px;
-            color: white;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: #333;
-            padding: 12px 30px;
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: bold;
-            margin-top: 15px;
-            transition: all 0.3s;
-        }
-
-        .cta-button:hover {
-            background-color: #e6a400;
-            transform: translateY(-2px);
-        }
-
-        .footer {
-            background-color: #f1f1f1;
-            padding: 20px;
-            text-align: center;
-            font-size: 14px;
-            color: var(--light-text);
-        }
-
-        .social-links {
-            margin: 15px 0;
-        }
-
-        .social-link {
-            display: inline-block;
-            margin: 0 10px;
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-
-        .company-info {
-            margin-top: 15px;
-            line-height: 1.8;
-        }
-
-        @media (max-width: 600px) {
-            .content {
-                padding: 20px;
-            }
-
-            .features {
-                flex-direction: column;
-            }
-
-            .otp-code {
-                font-size: 26px;
-                letter-spacing: 6px;
-            }
-        }
-    </style>
 </head>
 
 <body>
-    <div class="email-container">
-        <!-- Header Section -->
-        <div class="header">
-            <div class="logo">
-                {{-- <span class="logo-icon">☀️</span> --}}
-                RAYZON SOLAR WARRANTY PORTAL
-            </div>
-            <div class="tagline">Harnessing the Power of the Sun for a Sustainable Future</div>
-        </div>
+    <table class="body-wrap"
+        style="font-family: 'Roboto', sans-serif; box-sizing: border-box; font-size: 14px; width: 100%; margin: 0; background: transparent;">
+        <tbody>
+            <tr>
+                <td></td>
 
-        <!-- Main Content -->
-        <div class="content">
-            <div class="greeting">Hello Valued Customer,</div>
+                <td class="container" width="600"
+                    style="display: block !important; max-width: 600px !important; margin: 0 auto;">
+                    <div class="content" style="max-width: 600px; margin: 0 auto; padding: 20px;">
 
-            <p>Thank you for using the Rayzon Solar Warranty Portal. To complete your warranty certificate verification,
-                please use the One-Time Password (OTP) below:</p>
+                        <table class="main" width="100%" cellspacing="0" cellpadding="0"
+                            style="border-radius: 7px; margin: 0; border: none;">
+                            <tbody>
+                                <tr>
+                                    <td class="content-wrap"
+                                        style="background: #fff; padding: 30px; border-radius: 7px; box-shadow: 0 3px 15px rgba(30,32,37,.06); color: #495057;">
 
-            <div class="otp-container">
-                <p style="text-align: center; margin: 0; font-weight: 500;">Your Verification Code</p>
-                <div class="otp-code">{{ $code }}</div>
-                <p class="expiry-notice">This code will expire in 10 minutes</p>
-            </div>
+                                        <!-- Logo -->
+                                        <table width="100%">
+                                            <tr>
+                                                <td style="padding-bottom: 20px;">
+                                                    <img src="https://rayzonsolar.com/img/header-logo.png"
+                                                        height="28" alt="Rayzon Solar">
+                                                </td>
+                                            </tr>
+                                        </table>
 
-            <div class="security-notice">
-                <strong>Security Notice:</strong> For your protection, please do not share this OTP with anyone. Rayzon
-                Solar representatives will never ask for your OTP.
-            </div>
+                                        <!-- Greeting -->
+                                        <table width="100%">
+                                            <tr>
+                                                <td style="font-size: 20px; font-weight: 500; padding-bottom: 10px;">
+                                                    Hello Valued Customer,
+                                                </td>
+                                            </tr>
+                                        </table>
 
-            <h3 style="color: var(--primary-color); text-align: center;">Why Choose Rayzon Solar?</h3>
+                                        <!-- Intro Message -->
+                                        <table width="100%">
+                                            <tr>
+                                                <td
+                                                    style="color: #878a99; font-size: 15px; line-height: 1.6; padding-bottom: 15px;">
+                                                    Thank you for using the Rayzon Solar Warranty Portal.<br>
+                                                    To complete your verification, please use the One-Time Password
+                                                    (OTP) below.
+                                                </td>
+                                            </tr>
+                                        </table>
 
-            <div class="features">
-                <div class="feature">
-                    <div class="feature-icon">🔋</div>
-                    <div>25-Year Performance Warranty</div>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">🌍</div>
-                    <div>Eco-Friendly Solutions</div>
-                </div>
-                <div class="feature">
-                    <div class="feature-icon">💰</div>
-                    <div>Significant Energy Savings</div>
-                </div>
-            </div>
+                                        <!-- OTP Box -->
+                                        <table width="100%" cellspacing="0" cellpadding="0"
+                                            style="background: #f5f7f9; border-radius: 6px; padding: 20px; margin: 15px 0;">
+                                            <tr>
+                                                <td
+                                                    style="font-size: 13px; text-transform: uppercase; text-align: center; color: #6c757d; padding-bottom: 8px;">
+                                                    Your Verification Code
+                                                </td>
+                                            </tr>
 
-            <div class="cta-section">
-                <h3 style="margin-top: 0; color: white;">Explore Our Solar Solutions</h3>
-                <p>Discover how our advanced solar technology can power your home or business while reducing your carbon
-                    footprint.</p>
-                <a href="https://rayzonsolar.com/" target="_blank" class="cta-button">Visit Our Website</a>
-            </div>
+                                            <tr>
+                                                <td
+                                                    style="font-size: 32px; font-weight: 700; text-align: center; letter-spacing: 4px; color: #0a7c8c; padding: 5px 0;">
+                                                    {{ $code }}
+                                                </td>
+                                            </tr>
 
-            <p>If you did not request this OTP, please ignore this email or contact our support team immediately.</p>
+                                            <tr>
+                                                <td
+                                                    style="font-size: 13px; color: #6c757d; text-align: center; padding-top: 8px;">
+                                                    This code is valid for 10 minutes.
+                                                </td>
+                                            </tr>
+                                        </table>
 
-            <p>Best regards,<br>
-                <strong>The Rayzon Solar Team</strong>
-            </p>
-        </div>
+                                        <!-- Security Notice -->
+                                        <table width="100%">
+                                            <tr>
+                                                <td
+                                                    style="background: #fff9e6; border: 1px solid #ffe9b3; border-radius: 6px; padding: 12px; margin-bottom: 20px; color: #856404; font-size: 13px; line-height: 1.5;">
+                                                    <strong>Security Notice:</strong> Please do not share this OTP with
+                                                    anyone.
+                                                    Rayzon Solar representatives will never ask for your OTP.
+                                                </td>
+                                            </tr>
+                                        </table>
 
-        <!-- Footer Section -->
-        <div class="footer">
-            <div class="social-links">
-                <a href="https://rayzonsolar.com/" target="_blank" class="social-link">Website</a> |
-                <a href="https://www.facebook.com/RayzonSolar/" target="_blank" class="social-link">Facebook</a> |
-                <a href="https://x.com/rayzonsolar" target="_blank" class="social-link">Twitter</a> |
-                <a href="https://www.linkedin.com/company/rayzonsolar" target="_blank" class="social-link">LinkedIn</a>
-            </div>
+                                        <!-- Call to Action Section -->
+                                        <table width="100%" cellspacing="0" cellpadding="0"
+                                            style="background: #0a7c8c; border-radius: 6px; padding: 22px; margin-top: 25px;">
+                                            <tr>
+                                                <td
+                                                    style="color: #ffffff; font-size: 18px; font-weight: 500; padding-bottom: 8px; text-align: center;">
+                                                    Explore Our Solar Solutions
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td
+                                                    style="color: #e8f4f5; font-size: 14px; line-height: 1.6; text-align: center; padding-bottom: 18px;">
+                                                    Discover our advanced solar technologies designed for long-term
+                                                    performance, energy
+                                                    savings, and a sustainable future.
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="text-align: center;">
+                                                    <a href="https://rayzonsolar.com/" target="_blank"
+                                                        style="background: #f8b500; color: #333; text-decoration: none; padding: .6rem 1.1rem; border-radius: .25rem; font-size: 14px; font-weight: 600; display: inline-block;">
+                                                        Visit Website →
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        </table>
 
-            <div class="company-info">
-                <strong>Rayzon Solar Limited</strong><br>
-                1104 to 1117, 11th Floor, Millennium Business Hub-1, <br>
-                Opp. Sarthana Nature Park, Surat - 395006, Gujarat - India.<br>
-                Phone: +91 96380 00461 | Email: contact@rayzonenergies.com
-            </div>
+                                        <!-- Closing -->
+                                        <table width="100%" style="margin-top: 25px;">
+                                            <tr>
+                                                <td style="font-size: 14px; color: #495057; line-height: 1.6;">
+                                                    If you did not request this OTP, please ignore this email or contact
+                                                    our support team immediately.<br><br>
+                                                    Best regards,<br>
+                                                    <strong>Rayzon Solar Team</strong>
+                                                </td>
+                                            </tr>
+                                        </table>
 
-            <p style="margin-top: 20px; font-size: 12px;">
-                You're receiving this email because you requested a warranty certificate OTP from Rayzon Solar.<br>
-                © 2025 Rayzon Solar Limited. All rights reserved.
-            </p>
-        </div>
-    </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <!-- Footer -->
+                        <div style="text-align: center; margin: 25px auto 0;">
+                            <ul
+                                style="list-style: none; display: flex; justify-content: space-evenly; padding-left: 0; margin-bottom: 18px;">
+                                <li><a href="https://rayzonsolar.com/" style="color: #495057;">Website</a></li>
+                                <li><a href="mailto:contact@rayzonenergies.com" style="color: #495057;">Support</a></li>
+                                <li><a href="https://www.linkedin.com/company/rayzonsolar/"
+                                        style="color: #495057;">LinkedIn</a></li>
+                            </ul>
+
+                            <p style="font-size: 13px; color: #98a6ad; margin: 0;">
+                                © {{ date('Y') }} Rayzon Solar Limited. All rights reserved.
+                            </p>
+                        </div>
+
+                    </div>
+                </td>
+
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
 </body>
 
 </html>
