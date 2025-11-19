@@ -1,6 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue'
-import { Link, router, usePage } from '@inertiajs/vue3'
+import { Head, Link, router, usePage } from '@inertiajs/vue3'
 import Card from '@/Components/Card.vue'
 import Layout from './Layout.vue'
 
@@ -18,7 +18,16 @@ const props = defineProps({
 
 <template>
   <Layout>
-    <div class="container py-5">
+    <Head title="Warranty Requests Dashboard" />
+
+    <div class="container py-4">
+      <!-- welcome card -->
+      <div class="row mb-4">
+        <!-- Greeting Section -->
+        <div class="col-lg-6">
+          <p class="text-muted mb-0">Welcome to Warranty Requests Dashboard.</p>
+        </div>
+      </div>
       <div class="row">
         <div class="col-lg-3">
           <Card title="Total Requests" :total="count.total" icon="ri-file-list-3-line" color="dark" />
@@ -47,6 +56,7 @@ const props = defineProps({
                   <th>No of Items</th>
                   <th>Status</th>
                   <th>Certificate</th>
+                  <th>Requested At</th>
                   <th>Action</th>
                 </tr>
               </thead>
@@ -60,12 +70,13 @@ const props = defineProps({
                     <span :class="`badge bg-${item.status_badge}`">{{ item.status_label ?? '-' }}</span>
                   </td>
                   <td>
-                    <Link v-if="item.certificate" :href="route('warranty-dashboard.download', item.id)" class="btn btn-sm btn-primary">Download</Link>
+                    <a v-if="item.certificate" :href="item.certificate.warranty_certificate_file_url" class="btn btn-sm btn-primary" target="_blank" rel="noopener noreferrer">Download</a>
                     <span v-else class="text-muted">Not Generated</span>
                   </td>
-                    <td>
-                        <Link :href="route('warranty-request.view', item.id)" class="btn btn-sm btn-info text-white">View</Link>
-                    </td>
+                  <td>{{ item.created_at }}</td>
+                  <td>
+                    <Link :href="route('warranty-request.view', item.id)" class="btn btn-sm btn-info text-white">View</Link>
+                  </td>
                 </tr>
               </tbody>
             </table>

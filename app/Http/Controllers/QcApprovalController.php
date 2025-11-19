@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\GenerateCertificatePdf;
+use App\Models\SerialNumber;
 use App\Models\WarrantyRequest;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -81,5 +83,57 @@ class QcApprovalController extends Controller
         return Inertia::render('Request/Show', [
             'request' => $warranty_request,
         ]);
+    }
+
+    /**
+     * Approve the specified resource.
+     */
+    public function approval(Request $request, $id)
+    {
+        $request->validate([
+            'status' => 'required|in:approved,rejected',
+            'reason' => 'nullable|string|max:250|required_if:status,rejected',
+        ]);
+
+        $warrantyRequest = WarrantyRequest::findOrFail($id);
+
+        if($request->status === 'rejected') {
+            $warrantyRequest->update([
+                'status' => 'rejected',
+                'qc_approved_by' => auth()->id(),
+                'qc_approved_at' => now(),
+                'qc_reject_reason' => $request->reason,
+            ]);
+
+            return back()->with('success', 'Warranty request has been rejected.');
+        }
+
+        // guard: require all items not "not_found"/"invalid"
+        $bad = $warrantyRequest->items()
+            ->whereIn('verification_state', ['not_found', 'invalid'])
+            ->count();
+
+        if ($bad > 0) {
+            return back()->with('error', 'Some serials are not verified.');
+        }
+
+        try {
+            // Consume serials
+            SerialNumber::whereIn('id', $warrantyRequest->items()->pluck('serial_number_id')->filter())
+                ->update(['status' => 'consumed']);
+
+            $warrantyRequest->update([
+                'status' => 'approved',
+                'qc_approved_by' => auth()->id(),
+                'qc_approved_at' => now(),
+            ]);
+
+            GenerateCertificatePdf::dispatch($warrantyRequest->id);
+
+            return back()->with('success', 'Approved. Certificate is being generated.');
+        } catch (\Throwable $th) {
+            dd($th->getMessage());
+            return back()->with('error', 'An error occurred: ' . $th->getMessage());
+        }
     }
 }

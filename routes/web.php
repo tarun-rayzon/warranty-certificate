@@ -51,6 +51,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session')])->group(fun
     // Warranty Requests
     Route::get('warranty-requests', [QcApprovalController::class, 'index'])->name('warranty-requests.index');
     Route::get('warranty-requests/{id}', [QcApprovalController::class, 'show'])->name('warranty-requests.show');
+
+    Route::post('warranty-requests/approval/{id}', [QcApprovalController::class, 'approval'])->name('warranty-requests.approval');
 });
 
 

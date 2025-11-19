@@ -107,7 +107,7 @@ export default {
 
     <div class="row">
       <div class="col-lg-3">
-        <Card title="Total Requests" :total="count.total" icon="ri-file-list-3-line" color="dark" />
+        <Card title="Total Requests" :total="count.count" icon="ri-file-list-3-line" color="dark" />
       </div>
       <div class="col-lg-3">
         <Card title="Pending QC" :total="count.pending" icon="bx bx-hourglass" color="warning" />

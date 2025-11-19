@@ -50,7 +50,6 @@ const verifyOtp = () => {
       preserveScroll: true,
 
       onSuccess: (res) => {
-        otpModal.value = false
         submitted.value = true
       },
 

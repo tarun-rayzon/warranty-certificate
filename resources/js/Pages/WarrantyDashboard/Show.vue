@@ -1,5 +1,5 @@
 <script setup>
-import { Head } from '@inertiajs/vue3'
+import { Head, Link } from '@inertiajs/vue3'
 
 import Layout from './Layout.vue'
 
@@ -19,6 +19,9 @@ const props = defineProps({
     <Head title="Warranty Request Details" />
 
     <div class="container py-4">
+      <div class="text-end mb-3">
+        <Link :href="route('customer.dashboard')" class="btn btn-primary btn-sm"><i class="bx bx-arrow-back align-middle"></i> Back to Dashboard</Link>
+      </div>
       <div class="card">
         <div class="card-body">
           <div class="row g-4">
@@ -71,22 +74,24 @@ const props = defineProps({
 
       <div class="card" v-if="request.items">
         <div class="card-body p-0">
-            <div class="table-responsive">
-              <table class="table table-nowrap table-bordered align-middle mb-0">
-                <thead class="table-light">
-                  <tr>
-                    <th scope="col">Serial Number</th>
-                    <th scope="col">Status</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr v-for="item in request.items" :key="item.id">
-                    <td>{{ item.serial ?? '-' }}</td>
-                    <td><span :class="`badge bg-${item.status_badge}`">{{ item.status_label ?? '-' }}</span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
+          <div class="table-responsive">
+            <table class="table table-nowrap table-bordered align-middle mb-0">
+              <thead class="table-light">
+                <tr>
+                  <th scope="col">Serial Number</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="item in request.items" :key="item.id">
+                  <td>{{ item.serial ?? '-' }}</td>
+                  <td>
+                    <span :class="`badge bg-${item.status_badge}`">{{ item.status_label ?? '-' }}</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <div v-if="request.items.length === 0" class="noresult">
             <div class="text-center">
               <lottie class="avatar-xl" colors="primary:#121331,secondary:#08a88a" :options="{ animationData: animationData }" :height="75" :width="75" />
@@ -96,6 +101,5 @@ const props = defineProps({
         </div>
       </div>
     </div>
-
   </Layout>
 </template>
