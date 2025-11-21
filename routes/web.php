@@ -64,3 +64,5 @@ Route::middleware('temp.auth')->prefix('customer')->group(function () {
 
     Route::post('/logout', [CustomerDashboardController::class, 'logout'])->name('customer.logout');
 });
+
+Route::view('warranty', 'pdf.certificate');

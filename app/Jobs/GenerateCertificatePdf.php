@@ -5,12 +5,12 @@ namespace App\Jobs;
 use App\Mail\CertificateReadyMail;
 use App\Models\WarrantyCertificate;
 use App\Models\WarrantyRequest;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use Barryvdh\Snappy\Facades\SnappyPdf as PDF;
 
 class GenerateCertificatePdf implements ShouldQueue
 {
@@ -32,12 +32,25 @@ class GenerateCertificatePdf implements ShouldQueue
         $req = WarrantyRequest::with(['customer', 'items'])->findOrFail($this->requestId);
 
         $certificateNo = $this->generateCertificateNo();
+        // Local logo file (super fast — recommended)
+        $logoPath = public_path('image/header-logo.png');
+        $logoBase64 = 'data:image/png;base64,' . base64_encode(file_get_contents($logoPath));
 
-        $pdf = Pdf::loadView('pdf.certificate', [
+        // Using Snappy (wkhtmltopdf)
+        $pdf = PDF::loadView('pdf.certificate', [
             'req' => $req,
             'certificateNo' => $certificateNo,
             'issuedAt' => now()->toDateString(),
-        ])->setPaper('a4');
+            'logoBase64' => $logoBase64,
+        ])
+        ->setPaper('a4')
+        ->setOption('margin-top', '5mm')
+        ->setOption('margin-bottom', '10mm')
+        ->setOption('margin-left', '5mm')
+        ->setOption('margin-right', '5mm')
+        ->setOption('enable-local-file-access', true)
+        ->setOption('dpi', 120)
+        ->setOption('print-media-type', true);
 
         $path = "certificates/{$certificateNo}.pdf";
 
