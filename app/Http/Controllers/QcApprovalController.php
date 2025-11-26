@@ -132,7 +132,6 @@ class QcApprovalController extends Controller
 
             return back()->with('success', 'Approved. Certificate is being generated.');
         } catch (\Throwable $th) {
-            dd($th->getMessage());
             return back()->with('error', 'An error occurred: ' . $th->getMessage());
         }
     }

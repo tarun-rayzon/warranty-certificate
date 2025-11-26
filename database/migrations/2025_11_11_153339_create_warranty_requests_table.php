@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('request_id', 120)->unique();
             $table->foreignId('customer_id')->constrained('customers');
             $table->string('invoice_no', 50)->nullable();
+            $table->string('module_no', 50)->nullable();
             $table->string('invoice_file_path', 255)->nullable();
             $table->date('purchase_date')->nullable();
             // status: pending_verification | pending_qc | approved | rejected

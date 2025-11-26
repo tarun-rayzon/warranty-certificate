@@ -365,7 +365,7 @@
                                 {{ \Carbon\Carbon::parse($req->purchase_date)->format('d-m-Y') }}<br><br>
 
                                 <div class="small-label">Module Model</div>
-                                {{ $moduleModel ?? 'N/A' }}<br><br>
+                                {{ $req->module_no ?? 'N/A' }}<br><br>
 
                                 <div class="small-label">Number of Modules</div>
                                 {{ $req->items->count() }}
@@ -881,11 +881,9 @@
                     <!-- ======= CENTER QR (Option A Box Style) ======= -->
                     <div class="qr-center-wrapper">
                         <div class="qr-box">
-                            <div class="qr-inner">
-                                ANNEXURE<br>QR
-                            </div>
+                            <img src="{{ $qrBase64 }}" alt="QR code">
                         </div>
-                        <div class="qr-label">Annexure QR (Demo)</div>
+                        <div class="qr-label">Scan the QR for more information</div>
                     </div>
 
                 </div>

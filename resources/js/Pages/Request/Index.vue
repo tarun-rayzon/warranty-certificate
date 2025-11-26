@@ -28,6 +28,7 @@ const columns = [
   { key: 'customer_name', label: 'Customer', sortable: false },
   { key: 'phone', label: 'Mobile', sortable: false },
   { key: 'invoice', label: 'Invoice No', sortable: false },
+  { key: 'module', label: 'Module', sortable: true },
   { key: 'invoice_file', label: 'Invoice', sortable: false },
   { key: 'no_of_items', label: 'No of Items', sortable: false },
   { key: 'status', label: 'Status', sortable: false },
@@ -172,6 +173,7 @@ export default {
                 </td>
                 <td v-if="isColumnVisible('phone')">{{ request.customer?.phone ?? '-' }}</td>
                 <td v-if="isColumnVisible('invoice_no')">{{ request.invoice_no ?? '-' }}</td>
+                <td v-if="isColumnVisible('module')">{{ request.module_no ?? '-' }}</td>
                 <td v-if="isColumnVisible('invoice_file')">{{ request.invoice ?? '-' }}</td>
                 <td v-if="isColumnVisible('no_of_items')">{{ request.items_count ?? '0' }}</td>
                 <td v-if="isColumnVisible('status')">
@@ -180,7 +182,6 @@ export default {
                 <td v-if="isColumnVisible('created_at')">{{ request.created_at ?? '-' }}</td>
                 <td v-if="isColumnVisible('action')">
                   <Link :href="route('warranty-requests.show', request.id)" class="me-1 btn btn-outline-primary btn-sm"><i class="bx bx-show align-middle"></i></Link>
-                  <button class="btn btn-outline-danger btn-sm" @click="openDeleteModal(request.id)"><i class="bx bx-trash align-middle"></i></button>
                 </td>
               </tr>
             </template>

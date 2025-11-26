@@ -15,6 +15,7 @@ class WarrantyRequest extends Model
         'request_id',
         'customer_id',
         'invoice_no',
+        'module_no',
         'invoice_file_path',
         'purchase_date',
         'status',

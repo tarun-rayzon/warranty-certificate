@@ -58,6 +58,7 @@ class WarrantyPublicController extends Controller
                     'request_id' => $this->generateRqNo(),
                     'customer_id' => $customer->id,
                     'invoice_no'  => $request->invoice_no,
+                    'module_no' => $request->module_no,
                     'invoice_file_path' => $path ?? null,
                     'purchase_date' => $request->purchase_date,
                     'status' => 'pending_verification',
@@ -96,7 +97,8 @@ class WarrantyPublicController extends Controller
             ->map(fn($s) => strtoupper(trim($s)))
             ->filter()
             ->unique();
-        $found = SerialNumber::whereIn('serial', $serials)->pluck('serial')->toArray();
+            
+        $found = SerialNumber::whereIn('serial', $serials)->where('status', 'available')->pluck('serial')->toArray();
 
         $invalid = $serials->diff($found)->values()->all();
 

@@ -36,12 +36,16 @@ class GenerateCertificatePdf implements ShouldQueue
         $logoPath = public_path('image/header-logo.png');
         $logoBase64 = 'data:image/png;base64,' . base64_encode(file_get_contents($logoPath));
 
+        $qrPath = public_path('image/rayzon-defects-warranty.png');
+        $qrBase64 = 'data:image/png;base64,' . base64_encode(file_get_contents($qrPath));
+
         // Using Snappy (wkhtmltopdf)
         $pdf = PDF::loadView('pdf.certificate', [
             'req' => $req,
             'certificateNo' => $certificateNo,
             'issuedAt' => now()->toDateString(),
             'logoBase64' => $logoBase64,
+            'qrBase64' => $qrBase64
         ])
         ->setPaper('a4')
         ->setOption('margin-top', '5mm')

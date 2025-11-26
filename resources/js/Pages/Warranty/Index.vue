@@ -33,6 +33,7 @@ const formData = useForm({
   invoice: null,
   serial_no: '',
   invoice_no: '',
+  module_no: '',
 })
 
 const formatCommaSeparated = () => {
@@ -225,7 +226,6 @@ watch(
   <Hero />
 
   <div class="container mb-4">
-
     <About />
 
     <section class="warranty-form pt-5" id="warranty-form">
@@ -295,19 +295,19 @@ watch(
                   <div class="row g-4">
                     <div class="col-md-6">
                       <InputLabel for="city" value="City" />
-                      <TextInput id="city" type="text" v-model="formData.city" :class="{ 'is-invalid': formData.errors.city }" placeholder="Add City" required />
+                      <TextInput id="city" type="text" v-model="formData.city" :class="{ 'is-invalid': formData.errors.city }" placeholder="Enter your city" required />
                       <InputError class="mt-2" :message="formData.errors.city" />
                     </div>
 
                     <div class="col-md-6">
                       <InputLabel for="state" value="State" />
-                      <TextInput id="state" type="text" v-model="formData.state" :class="{ 'is-invalid': formData.errors.state }" placeholder="Add State" required />
+                      <TextInput id="state" type="text" v-model="formData.state" :class="{ 'is-invalid': formData.errors.state }" placeholder="Enter your state" required />
                       <InputError class="mt-2" :message="formData.errors.state" />
                     </div>
 
                     <div class="col-md-6">
                       <InputLabel for="pincode" value="Pincode" />
-                      <TextInput id="pincode" type="number" v-model="formData.pincode" :class="{ 'is-invalid': formData.errors.pincode }" placeholder="Add Pincode" required />
+                      <TextInput id="pincode" type="number" v-model="formData.pincode" :class="{ 'is-invalid': formData.errors.pincode }" placeholder="Enter your pincode" required />
                       <InputError class="mt-2" :message="formData.errors.pincode" />
                     </div>
                   </div>
@@ -345,10 +345,17 @@ watch(
                   </div>
                   <div class="mb-3">
                     <InputLabel for="invoice" value="Invoice Number" />
-                    <TextInput id="invoice" type="text" v-model="formData.invoice_no" :class="{ 'is-invalid': formData.errors.invoice_no }" placeholder="Invoice Number" required />
+                    <TextInput id="invoice" type="text" @input="formData.invoice_no = formData.invoice_no.toUpperCase()" v-model="formData.invoice_no" :class="{ 'is-invalid': formData.errors.invoice_no }" placeholder="Invoice Number" required />
                     <InputError class="mt-2" :message="formData.errors.invoice_no" />
                   </div>
                 </FormSection>
+
+                <div class="mb-3">
+                  <InputLabel for="module" value="Module Number" />
+                  <TextInput id="module" type="text" @input="formData.module_no = formData.module_no.toUpperCase()" v-model="formData.module_no" :class="{ 'is-invalid': formData.errors.module_no }" placeholder="Module Number" required />
+                  <div class="form-text">You can find it in your invoice ex. RSB545WC</div>
+                  <InputError class="mt-2" :message="formData.errors.module_no" />
+                </div>
 
                 <hr class="my-4" />
 
@@ -370,9 +377,7 @@ watch(
                 </FormSection>
 
                 <span v-if="!serialValid">
-                    <p class="text-danger fw-semibold mt-2">
-                        Please ensure serial numbers are validated before submitting the form.
-                    </p>
+                  <p class="text-danger fw-semibold mt-2">Please ensure serial numbers are validated before submitting the form.</p>
                 </span>
 
                 <!-- Submit -->
@@ -400,7 +405,10 @@ watch(
           We’ve sent a 6-digit code to
           <strong>{{ formData.email ?? 'your-email@example.com' }}</strong>
         </p>
-        <p class="text-muted mb-4 small">Want to change your email? <a href="#" @click="otpModal = false" class="fw-semibold">Click here</a></p>
+        <p class="text-muted mb-4 small">
+          Want to change your email?
+          <a href="#" @click="otpModal = false" class="fw-semibold">Click here</a>
+        </p>
 
         <form @submit.prevent="verifyOtp()">
           <div class="d-flex justify-content-center gap-2 mb-3">

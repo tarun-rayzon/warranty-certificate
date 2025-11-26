@@ -151,8 +151,8 @@ export default {
 
     <template v-if="layoutType === 'vertical' || layoutType === 'semibox'">
       <ul class="navbar-nav h-100" id="navbar-nav">
-        <li class="menu-title" v-if="userHasRole('admin')">
-          <span>Admin</span>
+        <li class="menu-title">
+          <span>Menu</span>
         </li>
 
         <li v-if="userHasRole('admin')" class="nav-item">

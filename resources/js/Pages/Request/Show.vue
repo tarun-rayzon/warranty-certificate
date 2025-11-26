@@ -82,6 +82,10 @@ const approval = () => {
             <p class="mb-1 text-uppercase fw-semibold">Invoice No</p>
             <div class="text-muted fw-medium">{{ request.invoice_no }}</div>
           </div>
+           <div class="col-md-3 col-6">
+            <p class="mb-1 text-uppercase fw-semibold">Module No</p>
+            <div class="text-muted fw-medium">{{ request.module_no }}</div>
+          </div>
 
           <div class="col-md-3 col-6">
             <p class="mb-1 text-uppercase fw-semibold">Purchase Date</p>
