@@ -317,7 +317,7 @@
                             <img src="{{ $logoBase64 }}">
                         </div>
                         <div class="header-right">
-                            <strong>Rayzon Solar Private Limited</strong><br>
+                            <strong>Rayzon Solar Limited</strong><br>
                             Warranty Certificate – PV Modules
                         </div>
                     </div>
@@ -442,7 +442,7 @@
                     <div class="terms-section">
                         <div class="terms-heading">1. LIMITED PRODUCT WARRANTY</div>
                         <p class="terms-paragraph">
-                            Subject to the exclusions contained below, Rayzon Solar Private Limited ("Rayzon") warrants
+                            Subject to the exclusions contained below, Rayzon Solar Limited ("Rayzon") warrants
                             to the buyer (the "Buyer") that the module shall be free from defects in materials and
                             workmanship that have an effect on module functionality under normal application,
                             installation, use and service conditions as specified in Rayzon's standard product
@@ -674,7 +674,7 @@
                         </p>
                         <p class="terms-paragraph">
                             EXCEPT AS OTHERWISE PROVIDED BY APPLICABLE LAW, THE
-                            FOREGOING REMEDIES STATE RAYZON SOLAR PRIVATE LIMITED'S
+                            FOREGOING REMEDIES STATE RAYZON SOLAR LIMITED'S
                             SOLE AND EXCLUSIVE OBLIGATION AND THE BUYER'S SOLE AND
                             EXCLUSIVE REMEDY FOR A BREACH OF THE FOREGOING LIMITED
                             WARRANTY.
@@ -695,7 +695,7 @@
                             from time to time:
                         </p>
                         <address>
-                            RAYZON SOLAR PRIVATE LIMITED <br>
+                            RAYZON SOLAR LIMITED <br>
                             Block No. 105, B/H Aron Pipes, B/H Hariya Talav, Kim Mandvi Road, <br>
                             Karanj, Surat-394110, Gujarat, India. <br>
                             Email: <a href="mailto:info@rayzonenergies.com">info@rayzonenergies.com</a>

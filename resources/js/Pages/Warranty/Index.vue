@@ -399,6 +399,14 @@ watch(
       </div>
     </section>
 
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="alert alert-info">
+                <i class="bi bi-info-circle-fill"></i> <span><strong>Important:</strong> Please ensure all information is accurate before submitting. Incomplete or incorrect details may rejected your warranty registration. if you found any issues during request then mail us on <strong>crm@rayzonenergies.com</strong>.</span>
+            </div>
+        </div>
+    </div>
+
     <BModal centered v-model="otpModal" hide-footer title="Email Verification" header-class="bg-white p-3" title-class="fs-14" no-body @hide.prevent hide-header-close>
       <div class="modal-body text-center">
         <p class="text-muted mb-2">

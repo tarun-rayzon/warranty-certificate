@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title inertia>Rayzon Solar Private Limited</title>
+    <title inertia>Rayzon Solar Limited</title>
 
     <!-- Social Media Meta Tags -->
-    <meta property="og:title" content="Rayzon Solar Private Limited">
+    <meta property="og:title" content="Rayzon Solar Limited">
 
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ URL::asset('image/favicon.ico') }}">
